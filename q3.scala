@@ -1,14 +1,17 @@
-object fibonacci extends App{
-    def fibonacci(n:Int):Int= n match{
-        case 0 => 0
-        case n if n==1 => 1
-        case _ => fibonacci(n-1) + fibonacci(n-2)
-    }
+object filterPrime{
+def isPrime(n: Int): Boolean = {
+  if (n <= 1) false
+  else if (n == 2) true
+  else !(2 until n).exists(i => n % i == 0)
+}
 
-    def fibonacciseq(n:Int):Unit ={
-        if(n>0) fibonacciseq(n-1)
-        println(fibonacci(n))
-    }
+def filterPrime(numbers: List[Int]): List[Int] = {
+  numbers.filter(num => isPrime(num))
+}
 
-    fibonacciseq(10)
+def main(args:Array[String]):Unit={
+val input = List(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+val output = filterPrime(input)
+println(output) // Output: List(2, 3, 5, 7)
+}
 }
